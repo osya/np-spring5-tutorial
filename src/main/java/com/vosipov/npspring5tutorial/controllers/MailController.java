@@ -1,7 +1,7 @@
 package com.vosipov.npspring5tutorial.controllers;
 
 import com.vosipov.npspring5tutorial.mail.MailSender;
-import com.vosipov.npspring5tutorial.mail.MockMailSender;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MailController {
 
-    private MailSender mailSender = new MockMailSender();
+    @Autowired
+    private MailSender mailSender;
 
     @GetMapping("/mail")
     public String mail(@RequestParam(value = "myName", defaultValue = "World") String name) {
